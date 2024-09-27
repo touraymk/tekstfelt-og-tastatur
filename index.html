@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tekstfelt med tastatur</title>
+    <style>
+      #app {
+        width: 500px;
+        background-color: #faebd7;
+        text-align: center;
+        padding: 20px;
+      }
+
+      #textField {
+        background-color: #f0f8ff;
+        border: 1px solid #d3d3d3;
+        height: 70px;
+        width: 220px;
+        margin: 40px auto;
+        text-align: center;
+      }
+
+      #keyboard {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 5px;
+      }
+
+      .key {
+        padding-top: 5px;
+        max-width: 24px;
+        height: 24px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .key:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      updateView();
+      function updateView() {
+        document.getElementById("app").innerHTML = /*html*/ `
+          <input type="text" id="textField" placeholder="Skriv her..."/>
+          <div id="keyboard"></div>
+        `;
+        createCharacter("Q");
+        createCharacter("W");
+        createCharacter("E");
+        createCharacter("R");
+        createCharacter("T");
+        createCharacter("Y");
+        createCharacter("U");
+        createCharacter("I");
+        createCharacter("O");
+        createCharacter("P");
+        createCharacter("A");
+        createCharacter("S");
+      }
+
+      function createCharacter(letter) {
+        document.getElementById("keyboard").innerHTML += /*html*/ `
+          <div class="key" onclick="addCharacter('${letter}')">${letter}</div>
+        `;
+      }
+
+      function addCharacter(character) {
+        var textField = document.getElementById("textField");
+        if (character === "") {
+          textField.value += " ";
+        } else {
+          textField.value += character;
+        }
+      }
+    </script>
+  </body>
+</html>
